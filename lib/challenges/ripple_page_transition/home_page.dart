@@ -46,8 +46,12 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               RipplePageRoute(
-                                page: const SecondPage(),
                                 anchor: _btnKey,
+                                pageBuilder: (BuildContext context,
+                                    Animation<double> animation,
+                                    Animation<double> secondaryAnimation) {
+                                  return const SecondPage();
+                                },
                               ),
                             );
                           },
@@ -63,7 +67,11 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         RipplePageRoute(
-                          page: const SecondPage(),
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation) {
+                            return const SecondPage();
+                          },
                           anchor: _fabKey,
                         ),
                       );
