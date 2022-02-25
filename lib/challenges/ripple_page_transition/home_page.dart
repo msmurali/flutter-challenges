@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey _fabKey = GlobalKey();
+  final GlobalKey _btnKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +28,31 @@ class _HomePageState extends State<HomePage> {
             return Stack(
               children: [
                 Scaffold(
-                  body: const Center(
-                    child: Text(
-                      'First Page',
-                      style: TextStyle(
-                        fontSize: 32.0,
-                      ),
+                  body: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'First Page',
+                          style: TextStyle(
+                            fontSize: 32.0,
+                          ),
+                        ),
+                        const SizedBox(height: 50.0),
+                        ElevatedButton(
+                          key: _btnKey,
+                          child: const Icon(Icons.arrow_forward),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              RipplePageRoute(
+                                page: const SecondPage(),
+                                anchor: _btnKey,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
                   floatingActionButtonLocation:

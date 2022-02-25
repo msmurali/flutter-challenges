@@ -26,12 +26,8 @@ class RipplePageRoute extends PageRouteBuilder {
     final Size? anchorSize = renderBox?.size;
 
     if (anchorPosition != null && anchorSize != null) {
-      final double anchorX = anchorPosition.dx;
-      final double anchorY = anchorPosition.dy;
-      final anchorCenter = Offset(
-        anchorX + anchorSize.width / 2,
-        anchorY + anchorSize.height / 2,
-      );
+      final Offset anchorCenter = Offset(anchorPosition.dx, anchorPosition.dy);
+
       return anchorSize.center(anchorCenter);
     } else {
       return screenSize.center(Offset.zero);
