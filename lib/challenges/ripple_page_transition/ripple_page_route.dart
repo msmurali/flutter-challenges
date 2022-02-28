@@ -11,7 +11,7 @@ Widget _defaultTransitionsBuilder(
 
 class RipplePageRoute extends PageRouteBuilder {
   /// [GlobalKey] of widget where the ripple animation starts.
-  /// if [null] is given animation starts from the center of the screen.
+  /// if [null], animation starts from the center of the screen.
   final GlobalKey? anchor;
 
   RipplePageRoute({

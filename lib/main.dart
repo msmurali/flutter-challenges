@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'challenges/ripple_page_transition/home_page.dart';
+import 'challenges/rotating_page_view/home_page.dart';
 
 void main() {
   runApp(const AppWidget());
