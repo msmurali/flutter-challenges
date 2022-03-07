@@ -37,8 +37,8 @@ class _HomePageState extends State<HomePage> {
             builder: (context) {
               return Align(
                 alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.width,
+                child: SizedBox.square(
+                  dimension: MediaQuery.of(context).size.width,
                   child: PageViewPage(),
                 ),
               );
@@ -64,7 +64,7 @@ class _PageViewPageState extends State<PageViewPage> {
   void initState() {
     _pages = [
       Container(
-        color: Colors.grey[900],
+        color: Colors.green,
         child: Center(
           child: Icon(
             Icons.account_circle,
@@ -73,7 +73,7 @@ class _PageViewPageState extends State<PageViewPage> {
         ),
       ),
       Container(
-        color: Colors.grey[900],
+        color: Colors.blue,
         child: Center(
           child: Icon(
             Icons.security,
@@ -82,7 +82,7 @@ class _PageViewPageState extends State<PageViewPage> {
         ),
       ),
       Container(
-        color: Colors.grey[900],
+        color: Colors.brown,
         child: Center(
           child: Icon(
             Icons.graphic_eq_sharp,
@@ -105,13 +105,40 @@ class _PageViewPageState extends State<PageViewPage> {
     return PageView.builder(
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
-        return Transform(
-          transform: Matrix4.rotationZ(_currentPage! - index),
-          child: _pages[index],
-          origin: Offset(MediaQuery.of(context).size.width,
-              MediaQuery.of(context).size.width),
-          alignment: Alignment.bottomRight,
-        );
+        if (_currentPage!.floor() + 1 == index) {
+          return Transform.rotate(
+            child: Container(
+              child: _pages[index],
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.red, width: 2.0),
+              ),
+            ),
+            angle: pi * (_currentPage! - index),
+            alignment: Alignment.topRight,
+          );
+        } else if (_currentPage!.floor() - 1 == index - 1) {
+          return Transform.rotate(
+            child: Container(
+              child: _pages[index],
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.green, width: 2.0),
+              ),
+            ),
+            angle: pi * (_currentPage! - index),
+            alignment: Alignment.bottomRight,
+          );
+        } else {
+          return Transform.rotate(
+            angle: pi * (_currentPage! - index),
+            alignment: Alignment.topRight,
+            child: Container(
+              child: _pages[index],
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.red, width: 2.0),
+              ),
+            ),
+          );
+        }
       },
       scrollDirection: Axis.vertical,
       controller: _controller,
